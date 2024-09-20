@@ -17,7 +17,7 @@ const LeftSideBar = () => {
 						className="flex gap-4 text-body-medium"
 					>
 						{link.icon}
-						<p>{link.label}</p>
+						<p>{link.label}</p>  
 					</Link>
 				))}
 			</div>
