@@ -2,13 +2,15 @@
 import { UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
-
-import { navLinks } from "@/lib/constants";
 import { Menu } from "lucide-react";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
+
+import { navLinks } from "@/lib/constants";
 
 const TopBar = () => {
 	const [dropdownMenu, setDropdownMenu] = useState(false);
+	const pathName = usePathname();
 	return (
 		<div className="sticky top-0 z-20 w-full flex justify-between items-center px-8 py-4 bg-blue-2 shadow-xl lg:hidden">
 			<Image src="/logo.png" alt="logo" width={150} height={70} />
@@ -18,7 +20,9 @@ const TopBar = () => {
 					<Link
 						href={link.url}
 						key={link.label}
-						className="flex gap-4 text-body-medium"
+						className={`flex gap-4 text-body-medium ${
+							pathName === link.url ? "text-blue-1" : ""
+						}`}
 					>
 						{link.icon}
 						<p>{link.label}</p>
