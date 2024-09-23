@@ -1,5 +1,5 @@
 import { CldUploadWidget } from "next-cloudinary";
-import { Plus } from "lucide-react";
+import { Plus, Trash } from "lucide-react";
 import { Button } from "../ui/button";
 import Image from "next/image";
 
@@ -21,19 +21,29 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
 		<div>
 			<div className="mb-4 flex flex-wrap items-center gap-4">
 				{value.map((url) => (
-					<Image
-						className="object-cover rounded-lg"
-						src={url}
-						alt="collections image"
-						width={200}
-						height={200}
-					/>
+					<div className="relative w-[200px] h-[200px]">
+						<div className="absolute top-0 right-0 z-10">
+							<Button
+								onClick={() => onRemove(url)}
+								size="sm"
+								className="bg-red-1 text-white"
+							>
+								<Trash className="h-4 w-4" />
+							</Button>
+						</div>
+						<Image
+							className="object-cover rounded-lg"
+							src={url}
+							alt="collections image"
+							fill
+						/>
+					</div>
 				))}
 			</div>
 			<CldUploadWidget uploadPreset="Zakariuploadcld1" onSuccess={onUpload}>
 				{({ open }) => {
 					return (
-						<Button onClick={() => open()} className="bg-blue-600 text-white">
+						<Button onClick={() => open()} className="bg-grey-1 text-white">
 							<Plus className="h-4 w-4 mr-2" />
 							Upload Image
 						</Button>
