@@ -11,7 +11,8 @@ import {
 } from "@/components/ui/command";
 import { Badge } from "../ui/badge";
 import { X } from "lucide-react";
-// Component for selecting the collection group of a product
+
+// This MultiSelect component is for selecting the collection group of a product
 interface MultiSelectProps {
 	placeholder: string;
 	collections: CollectionType[];
@@ -78,7 +79,9 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
 									onMouseDown={(e) => e.preventDefault()}
 									onSelect={() => {
 										onChange(collection._id);
+										setInputValue("");
 									}}
+									className="hover:bg-grey-2 cursor-pointer"
 								>
 									{collection.title}
 								</CommandItem>
