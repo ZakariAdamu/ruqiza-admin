@@ -5,6 +5,8 @@ import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 import { X } from "lucide-react";
 
+
+// Component for adding product tags
 interface MultiTextProps {
 	placeholder: string;
 	value: string[];
