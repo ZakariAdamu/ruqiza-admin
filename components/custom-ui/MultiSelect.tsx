@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/command";
 import { Badge } from "../ui/badge";
 import { X } from "lucide-react";
-
 // Component for selecting the collection group of a product
 interface MultiSelectProps {
 	placeholder: string;
@@ -31,7 +30,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
 	const [inputValue, setInputValue] = useState("");
 	const [open, setOpen] = useState(false);
 
-	// select a collection
+	// select a collection from the collections dropdown list
 	let selected: CollectionType[];
 
 	if (value.length === 0) {
@@ -42,6 +41,10 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
 		) as CollectionType[];
 	}
 
+	// Remove selected collection from dropdown list, make it unavailable after its selected. Therefore selectables are the available collections to select from
+	const selectables = collections.filter(
+		(collection) => !selected.includes(collection)
+	);
 	return (
 		<Command className="overflow-visible bg-white">
 			<div className="flex gap-1 flex-wrap border rounded-md">
@@ -56,20 +59,20 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
 						</button>
 					</Badge>
 				))}
+				<CommandInput
+					placeholder={placeholder}
+					value={inputValue}
+					onValueChange={setInputValue}
+					onBlur={() => setOpen(false)}
+					onFocus={() => setOpen(true)}
+				/>
 			</div>
-			<CommandInput
-				placeholder={placeholder}
-				value={inputValue}
-				onValueChange={setInputValue}
-				onBlur={() => setOpen(false)}
-				onFocus={() => setOpen(true)}
-			/>
 
 			<div className="relative mt-2">
 				{open && (
 					<CommandList>
 						<CommandGroup className="absolute w-full z-10 top-0 overflow-auto border rounded-md shadow-md">
-							{collections.map((collection) => (
+							{selectables.map((collection) => (
 								<CommandItem
 									key={collection._id}
 									onMouseDown={(e) => e.preventDefault()}
