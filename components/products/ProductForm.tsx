@@ -25,8 +25,8 @@ import MultiSelect from "../custom-ui/MultiSelect";
 
 // Using this CollectionForm component, we can POST to create a new collection or update an existing collection(initialData)
 const formSchema = z.object({
-	title: z.string().min(2).max(50),
-	description: z.string().min(2).max(500).trim(),
+	title: z.string().min(2).max(500),
+	description: z.string().min(2).max(50000).trim(),
 	media: z.array(z.string()),
 	category: z.string(),
 	collections: z.array(z.string()),
@@ -359,7 +359,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
 						<Button
 							type="button"
 							className="bg-blue-1 text-white"
-							onClick={() => router.push("/collections")}
+							onClick={() => router.push("/products")}
 						>
 							Discard
 						</Button>
