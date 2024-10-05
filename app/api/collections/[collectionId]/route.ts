@@ -2,6 +2,7 @@ import { connectToDB } from "@/lib/mongoDB";
 import { auth } from "@clerk/nextjs/server";
 import Collection from "@/lib/models/Collection";
 import { NextRequest, NextResponse } from "next/server";
+import Product from "@/lib/models/Product";
 
 // A unique collection route.ts file
 export const GET = async (
@@ -54,7 +55,6 @@ export const POST = async (
 		await collection.save();
 
 		return NextResponse.json(collection, { status: 200 });
-
 	} catch (err) {
 		console.log("[collectionId_POST]", err);
 		return new NextResponse("Internal error", { status: 500 });
@@ -78,6 +78,12 @@ export const DELETE = async (
 		await connectToDB();
 
 		await Collection.findByIdAndDelete(params.collectionId);
+
+		// delete the collection from the product, leaving the product without a collection group
+		await Product.updateMany(
+			{ collections: params.collectionId },
+			{ $pull: { collections: params.collectionId } }
+		);
 		return new NextResponse("Collection deleted!", { status: 200 });
 	} catch (err) {
 		console.log("[collection_DELETE]", err);

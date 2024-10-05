@@ -56,7 +56,7 @@ const Delete: React.FC<DeleteProps> = ({ item, id }) => {
 					<AlertDialogDescription>
 						This action cannot be undone. This will permanently delete your
 						&nbsp;
-						{item} and remove your data from your database.
+						{item}
 					</AlertDialogDescription>
 				</AlertDialogHeader>
 				<AlertDialogFooter>

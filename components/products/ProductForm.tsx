@@ -22,6 +22,7 @@ import toast from "react-hot-toast";
 import Delete from "../custom-ui/Delete";
 import MultiText from "../custom-ui/MultiText";
 import MultiSelect from "../custom-ui/MultiSelect";
+import Loader from "../custom-ui/Loader";
 
 // Using this CollectionForm component, we can POST to create a new collection or update an existing collection(initialData)
 const formSchema = z.object({
@@ -44,7 +45,7 @@ interface ProductFormProps {
 const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
 	const router = useRouter();
 
-	const [loading, setLoading] = useState(false);
+	const [loading, setLoading] = useState(true);
 	const [collections, setCollections] = useState<CollectionType[]>([]);
 
 	const getCollections = async () => {
@@ -109,7 +110,6 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
 		// Do something with the form values.
 		// ✅ This will be type-safe and validated.
 		try {
-			setLoading(true);
 			const url = initialData
 				? `/api/products/${initialData._id}`
 				: "/api/products";
@@ -129,12 +129,17 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
 			toast.error("Something went wrong! Please try again.");
 		}
 	};
-	return (
+
+	console.log("initialData", initialData);
+	console.log("collections", collections);
+	return loading ? (
+		<Loader />
+	) : (
 		<div className="p-10">
 			{initialData ? (
 				<div className="flex items-center justify-between">
 					<p className="text-heading2-bold">Edit Product</p>
-					<Delete id={initialData._id} />
+					<Delete item="product" id={initialData._id} />
 				</div>
 			) : (
 				<p className="text-heading2-bold">Create Product</p>
@@ -274,31 +279,35 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
 								</FormItem>
 							)}
 						/>
-						<FormField
-							control={form.control}
-							name="collections"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Collections</FormLabel>
-									<FormControl>
-										<MultiSelect
-											placeholder="Collections"
-											collections={collections}
-											value={field.value}
-											onChange={(_id) => field.onChange([...field.value, _id])}
-											onRemove={(idToRemove) =>
-												field.onChange([
-													...field.value.filter(
-														(collectionId) => collectionId !== idToRemove
-													),
-												])
-											}
-										/>
-									</FormControl>
-									<FormMessage className="text-red-1" />
-								</FormItem>
-							)}
-						/>
+						{collections.length > 0 && (
+							<FormField
+								control={form.control}
+								name="collections"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel>Collections</FormLabel>
+										<FormControl>
+											<MultiSelect
+												placeholder="Collections"
+												collections={collections}
+												value={field.value}
+												onChange={(_id) =>
+													field.onChange([...field.value, _id])
+												}
+												onRemove={(idToRemove) =>
+													field.onChange([
+														...field.value.filter(
+															(collectionId) => collectionId !== idToRemove
+														),
+													])
+												}
+											/>
+										</FormControl>
+										<FormMessage className="text-red-1" />
+									</FormItem>
+								)}
+							/>
+						)}
 						<FormField
 							control={form.control}
 							name="colors"
