@@ -1,10 +1,5 @@
-import { UserButton } from "@clerk/nextjs";
+// my layout has everything I need for now
 
 export default function Home() {
-	return (
-		<div>
-			{/* <UserButton /> */}
-			<p>`</p>
-		</div>
-	);
+	// return <div className="bg-[#d9d9d9] opacity-10"></div>;
 }

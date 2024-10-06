@@ -33,7 +33,7 @@ const Collections = () => {
 	}, []);
 
 	return (
-		<div className="px-10 py-5">
+		<div className="px-10 py-5 bg-opacity-25 !important">
 			<div className="flex items-center justify-between">
 				<p className="text-heading2-bold">Collections</p>
 				{/* Create collection buton */}

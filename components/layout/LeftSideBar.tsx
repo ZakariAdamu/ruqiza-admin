@@ -14,7 +14,7 @@ let styles = {
 const LeftSideBar = () => {
 	const pathName = usePathname();
 	return (
-		<div className="h-screen left-0 top-0 sticky p-10 flex flex-col gap-16 bg-blue-2 shadow-xl max-lg:hidden">
+		<div className="h-screen left-0 top-0 sticky p-10 flex flex-col gap-16 bg-[#d9d9d9] shadow-xl max-lg:hidden">
 			<Image src="/logo.png" alt="logo" width={150} height={150} />
 
 			<div className="flex flex-col gap-12">
@@ -34,7 +34,7 @@ const LeftSideBar = () => {
 
 			<div className="flex gap-4 text-body-medium items-center">
 				<UserButton />
-				<p>Edit Profile</p>
+				<p>User Profile</p>
 			</div>
 		</div>
 	);
