@@ -3,54 +3,52 @@ import Collection from "@/lib/models/Collection";
 import { NextRequest, NextResponse } from "next/server";
 import { connectToDB } from "@/lib/mongoDB";
 
+const handleErrorResponse = (message: string, status: number) => {
+	return new NextResponse(message, { status });
+};
+
 export const POST = async (req: NextRequest) => {
 	try {
 		const { userId } = auth();
-
 		if (!userId) {
-			return new NextResponse("Unauthorized, please sign up", { status: 403 });
+			return handleErrorResponse("Unauthorized, please sign up", 403);
 		}
 
 		await connectToDB();
 
 		const { title, description, image } = await req.json();
 
-		const existingCollection = await Collection.findOne({ title });
+		// Validate input
+		if (!title || !image) {
+			return handleErrorResponse("Title and image are required", 400);
+		}
 
+		const existingCollection = await Collection.findOne({ title });
 		if (existingCollection) {
-			return new NextResponse(
-				"Collection already exist. Create a new collection.",
-				{ status: 400 }
+			return handleErrorResponse(
+				"Collection already exists. Create a new collection.",
+				400
 			);
 		}
 
-		if (!title || !image) {
-			return new NextResponse("Title and image are required", { status: 400 });
-		}
-
-		const newCollection = await Collection.create({
-			title,
-			description,
-			image,
-		});
-
+		const newCollection = new Collection({ title, description, image });
 		await newCollection.save();
 
-		return NextResponse.json(newCollection, { status: 200 });
+		return NextResponse.json(newCollection, { status: 201 }); // Using 201 for resource creation
 	} catch (err) {
-		console.log("[collections_POST]", err);
-		return new NextResponse("Internal Server Error", { status: 500 });
+		console.error("[collections_POST]", err);
+		return handleErrorResponse("Internal Server Error", 500);
 	}
 };
 
-export const GET = async (req: NextRequest) => {
+export const GET = async () => {
 	try {
 		await connectToDB();
 		const collections = await Collection.find().sort({ createdAt: "desc" });
 		return NextResponse.json(collections, { status: 200 });
 	} catch (err) {
-		console.log("[collections_GET]", err);
-		return new NextResponse("Internal Server Error", { status: 500 });
+		console.error("[collections_GET]", err);
+		return handleErrorResponse("Internal Server Error", 500);
 	}
 };
 

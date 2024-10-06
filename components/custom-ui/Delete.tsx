@@ -14,6 +14,7 @@ import {
 import { Button } from "../ui/button";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import Loader from "./Loader";
 
 interface DeleteProps {
 	item: string;
@@ -41,7 +42,9 @@ const Delete: React.FC<DeleteProps> = ({ item, id }) => {
 			toast.error("Error deleting file! Please try again.");
 		}
 	};
-	return (
+	return loading ? (
+		<Loader />
+	) : (
 		<AlertDialog>
 			<AlertDialogTrigger>
 				<Button className="bg-red-1 text-white">
@@ -61,7 +64,11 @@ const Delete: React.FC<DeleteProps> = ({ item, id }) => {
 				</AlertDialogHeader>
 				<AlertDialogFooter>
 					<AlertDialogCancel>Cancel</AlertDialogCancel>
-					<AlertDialogAction className="bg-red-1 text-white" onClick={onDelete}>
+					<AlertDialogAction
+						disabled
+						className="bg-red-1 text-white"
+						onClick={onDelete}
+					>
 						Delete
 					</AlertDialogAction>
 				</AlertDialogFooter>

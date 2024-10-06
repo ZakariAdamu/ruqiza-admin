@@ -3,7 +3,6 @@ import Product from "@/lib/models/Product";
 import { connectToDB } from "@/lib/mongoDB";
 import { auth } from "@clerk/nextjs/server";
 import { NextRequest, NextResponse } from "next/server";
-import { useId } from "react";
 
 // A unique productId route.ts file for individual product endpoint
 
@@ -46,7 +45,7 @@ export const POST = async (
 	try {
 		const { userId } = auth();
 
-		if (!useId) {
+		if (!userId) {
 			return new NextResponse("Unauthorized, please sign in", { status: 401 });
 		}
 
@@ -181,4 +180,3 @@ export const DELETE = async (
 	}
 };
 
-export const dynamic = "force-dynamic";

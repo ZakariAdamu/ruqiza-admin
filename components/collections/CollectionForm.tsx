@@ -19,6 +19,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import Delete from "../custom-ui/Delete";
+import Loader from "../custom-ui/Loader";
 
 // Using this CollectionForm component, we can POST to create a new collection or update an existing collection(initialData)
 const formSchema = z.object({
@@ -84,7 +85,9 @@ const CollectionForm: React.FC<CollectionFormProps> = ({ initialData }) => {
 			toast.error("Something went wrong! Please try again.");
 		}
 	};
-	return (
+	return loading ? (
+		<Loader />
+	) : (
 		<div className="p-10">
 			{initialData ? (
 				<div className="flex items-center justify-between">

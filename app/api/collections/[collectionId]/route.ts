@@ -12,7 +12,7 @@ export const GET = async (
 	try {
 		await connectToDB();
 
-		let collection = await Collection.findById(params.collectionId);
+		const collection = await Collection.findById(params.collectionId);
 
 		if (!collection) {
 			return new NextResponse(

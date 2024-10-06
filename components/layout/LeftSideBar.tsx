@@ -7,10 +7,6 @@ import { usePathname } from "next/navigation";
 
 import { navLinks } from "@/lib/constants";
 
-let styles = {
-	height: "auto",
-};
-
 const LeftSideBar = () => {
 	const pathName = usePathname();
 	return (
