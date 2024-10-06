@@ -10,7 +10,7 @@ export const connectToDB = async (): Promise<void> => {
 		}
 
 		// Ensure the MongoDB connection URL is available
-		const mongoURI = process.env.MONGODB_URL;
+		const mongoURI = process.env.MONGODB_URL; 
 		if (!mongoURI) {
 			throw new Error(
 				"MongoDB connection URL is not defined in environment variables"
