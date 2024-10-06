@@ -35,6 +35,13 @@ export const POST = async (
 	try {
 		const { userId } = auth();
 
+		if (!userId) {
+			return new NextResponse(
+				"Unauthorized, only signed in admin can add collections.",
+				{ status: 401 }
+			);
+		}
+
 		let collection = await Collection.findById(params.collectionId);
 
 		if (!collection) {

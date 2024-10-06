@@ -14,7 +14,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
 	onRemove,
 	value,
 }) => {
-	const onUpload = (result: { info: { secure_url: string } }) => {
+	const onUpload = (result: any) => {
 		onChange(result.info.secure_url);
 	};
 	return (
