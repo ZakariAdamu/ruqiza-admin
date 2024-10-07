@@ -1,4 +1,4 @@
-/* this code will make our authentication routes private */
+/* this code will make our authentication routes private. Source: dashboard.clerk.com */
 // import { clerkMiddleware } from "@clerk/nextjs/server";
 
 // export default clerkMiddleware();
@@ -10,11 +10,14 @@
 // 	],
 // };
 
-
-/* this code will make our authentication routes public */
+/* this code will make our authentication routes public. Source: Nextjs.org */
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
-const isPublicRoute = createRouteMatcher(["/sign-in(.*)", "/sign-up(.*)"]);
+const isPublicRoute = createRouteMatcher([
+	"/api/:path*",
+	"/sign-in(.*)",
+	"/sign-up(.*)",
+]);
 
 export default clerkMiddleware((auth, request) => {
 	if (!isPublicRoute(request)) {
