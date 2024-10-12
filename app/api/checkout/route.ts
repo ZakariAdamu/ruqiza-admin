@@ -1,4 +1,3 @@
-import { metadata } from "@/app/(auth)/layout";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
@@ -30,7 +29,7 @@ export async function POST(req: NextRequest) {
 			payment_method_types: ["card"],
 			mode: "payment",
 			shipping_address_collection: {
-				allowed_countries: ["US", "CA", "NGN"],
+				allowed_countries: ["US", "CA", "GB", "AU"],
 			},
 			shipping_options: [
 				{ shipping_rate: "shr_1Q8oU1L2UgcWPty3tJsiE0ND" }, // free shipping
