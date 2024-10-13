@@ -24,7 +24,6 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
 					<div key={url} className="relative w-[200px] h-[200px]">
 						<div className="absolute top-0 right-0 z-10">
 							<Button
-								disabled
 								type="button"
 								onClick={() => onRemove(url)}
 								size="sm"

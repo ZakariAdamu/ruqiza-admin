@@ -42,6 +42,11 @@ const MultiText: React.FC<MultiTextProps> = ({
 						{item}
 						<button
 							className="ml-1 rounded-full outline-none hover:bg-red-1 p-2"
+							onKeyDown={(e) => {
+								if (e.key === "Enter") {
+									e.preventDefault();
+								}
+							}}
 							onClick={() => onRemove(item)}
 						>
 							<X className="h-3 w-3" />

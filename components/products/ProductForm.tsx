@@ -110,6 +110,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
 		// Do something with the form values.
 		// ✅ This will be type-safe and validated.
 		try {
+			setLoading(true);
 			const url = initialData
 				? `/api/products/${initialData._id}`
 				: "/api/products";
@@ -130,8 +131,6 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
 		}
 	};
 
-	console.log("initialData", initialData);
-	console.log("collections", collections);
 	return loading ? (
 		<Loader />
 	) : (
@@ -146,7 +145,10 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
 			)}
 			<Separator className=" bg-grey-1 mt-4 mb-7" />
 			<Form {...form}>
-				<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+				<form
+						onSubmit={(form.handleSubmit(onSubmit))}
+					className="space-y-8"
+				>
 					<FormField
 						control={form.control}
 						name="title"
