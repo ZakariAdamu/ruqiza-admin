@@ -56,4 +56,3 @@ const Collections = () => {
 
 export default Collections;
 
-// export const dynamic = "force-dynamic";

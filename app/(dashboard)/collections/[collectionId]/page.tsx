@@ -35,6 +35,6 @@ const CollectionDetails = ({
 	);
 };
 
+export const dynamic = "force-dynamic";
 export default CollectionDetails;
 
-export const dynamic = "force-dynamic";
