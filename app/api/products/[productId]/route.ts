@@ -1,3 +1,6 @@
+
+export const dynamic = "force-dynamic";
+
 import Collection from "@/lib/models/Collection";
 import Product from "@/lib/models/Product";
 import { connectToDB } from "@/lib/mongoDB";
@@ -187,4 +190,3 @@ export const DELETE = async (
 	}
 };
 
-export const dynamic = "force-dynamic";

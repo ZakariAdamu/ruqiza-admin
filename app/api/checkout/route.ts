@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { NextRequest, NextResponse } from "next/server";
 import { stripe } from "@/lib/stripe";
 
@@ -57,5 +59,3 @@ export async function POST(req: NextRequest) {
 		return new NextResponse("Internal Server Error", { status: 500 });
 	}
 }
-
-export const dynamic = "force-dynamic";

@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { auth } from "@clerk/nextjs/server";
 import Collection from "@/lib/models/Collection";
 import { NextRequest, NextResponse } from "next/server";
@@ -51,5 +53,3 @@ export const GET = async () => {
 		return handleErrorResponse("Internal Server Error", 500);
 	}
 };
-
-export const dynamic = "force-dynamic";

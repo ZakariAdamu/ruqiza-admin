@@ -1,4 +1,7 @@
 "use client";
+
+export const dynamic = "force-dynamic";
+
 import CollectionForm from "@/components/collections/CollectionForm";
 import Loader from "@/components/custom-ui/Loader";
 import { useEffect, useState } from "react";
@@ -35,6 +38,5 @@ const CollectionDetails = ({
 	);
 };
 
-export const dynamic = "force-dynamic";
 export default CollectionDetails;
 

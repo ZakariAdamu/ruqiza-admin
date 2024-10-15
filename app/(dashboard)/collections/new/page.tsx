@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import CollectionForm from "@/components/collections/CollectionForm";
 
 // In this page we can create a new colection and also edit/update a collection

@@ -1,3 +1,6 @@
+
+export const dynamic = "force-dynamic";
+
 import { auth } from "@clerk/nextjs/server";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -82,4 +85,3 @@ export const GET = async (req: NextRequest) => {
 	}
 };
 
-export const dynamic = "force-dynamic";

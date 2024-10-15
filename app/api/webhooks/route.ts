@@ -1,3 +1,6 @@
+
+export const dynamic = "force-dynamic";
+
 import { connectToDB } from "@/lib/mongoDB";
 import { NextRequest, NextResponse } from "next/server";
 import Order from "@/lib/models/Order";
@@ -81,4 +84,3 @@ export const POST = async (req: NextRequest) => {
 	}
 };
 
-export const dynamic = "force-dynamic";

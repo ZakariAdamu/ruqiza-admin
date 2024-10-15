@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { connectToDB } from "@/lib/mongoDB";
 import { auth } from "@clerk/nextjs/server";
 import Collection from "@/lib/models/Collection";
@@ -100,5 +102,3 @@ export const DELETE = async (
 		return new NextResponse("Internal error", { status: 500 });
 	}
 };
-
-export const dynamic = "force-dynamic";

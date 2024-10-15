@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { DataTable } from "@/components/custom-ui/DataTable";
 import { columns } from "@/components/orders/OrderItemsColumns";
 

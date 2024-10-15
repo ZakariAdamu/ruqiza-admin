@@ -1,4 +1,5 @@
 "use client";
+export const dynamic = "force-dynamic";
 
 import { DataTable } from "@/components/custom-ui/DataTable";
 import Loader from "@/components/custom-ui/Loader";
@@ -35,7 +36,5 @@ const Orders = () => {
 		</div>
 	);
 };
-
-export const dynamic = "force-dynamic";
 
 export default Orders;

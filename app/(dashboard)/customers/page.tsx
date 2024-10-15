@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { DataTable } from "@/components/custom-ui/DataTable";
 import { columns } from "@/components/customers/CustomerColumns";
 import { Separator } from "@/components/ui/separator";
@@ -16,7 +18,5 @@ const Customers = async () => {
 		</div>
 	);
 };
-
-export const dynamic = "force-dynamic";
 
 export default Customers;

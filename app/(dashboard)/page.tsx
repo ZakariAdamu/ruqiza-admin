@@ -1,4 +1,4 @@
-// my layout has everything I need for now
+export const dynamic = "force-dynamic";
 
 import SalesChart from "@/components/custom-ui/SalesChart";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";

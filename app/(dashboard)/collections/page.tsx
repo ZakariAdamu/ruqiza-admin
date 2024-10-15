@@ -1,5 +1,7 @@
 "use client";
 // Global imports
+export const dynamic = "force-dynamic";
+
 import { useRouter } from "next/navigation";
 import { Plus } from "lucide-react";
 import { useEffect, useState } from "react";

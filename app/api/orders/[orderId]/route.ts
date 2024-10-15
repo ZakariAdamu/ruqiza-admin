@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import Customer from "@/lib/models/Customer";
 import Order from "@/lib/models/Order";
 import Product from "@/lib/models/Product";
@@ -30,6 +32,3 @@ export const GET = async (
 		return new NextResponse("Internal Server Error ", { status: 500 });
 	}
 };
-
-export const dynamic = "force-dynamic";
-
