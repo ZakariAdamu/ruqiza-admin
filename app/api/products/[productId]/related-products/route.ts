@@ -4,7 +4,8 @@ import Product from "@/lib/models/Product";
 import { connectToDB } from "@/lib/mongoDB";
 import { NextResponse } from "next/server";
 
-export const GET = async ({ params }: { params: { productId: string } }) => {
+export const GET = async (request: { params: { productId: string } }) => {
+	const { params } = request;
 	try {
 		await connectToDB();
 
