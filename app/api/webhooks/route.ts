@@ -1,4 +1,3 @@
-
 export const dynamic = "force-dynamic";
 
 import { connectToDB } from "@/lib/mongoDB";
@@ -83,4 +82,3 @@ export const POST = async (req: NextRequest) => {
 		return new NextResponse("Failed to create the order", { status: 500 });
 	}
 };
-
