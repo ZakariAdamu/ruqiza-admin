@@ -36,3 +36,5 @@ const CollectionDetails = ({
 };
 
 export default CollectionDetails;
+
+export const dynamic = "force-dynamic";

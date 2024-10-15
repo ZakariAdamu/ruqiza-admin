@@ -145,10 +145,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
 			)}
 			<Separator className=" bg-grey-1 mt-4 mb-7" />
 			<Form {...form}>
-				<form
-						onSubmit={(form.handleSubmit(onSubmit))}
-					className="space-y-8"
-				>
+				<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
 					<FormField
 						control={form.control}
 						name="title"
@@ -218,6 +215,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
 											placeholder="Price"
 											{...field}
 											onKeyDown={handleKeyPress}
+											required={true}
 										/>
 									</FormControl>
 									<FormMessage className="text-red-1" />
@@ -236,6 +234,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
 											placeholder="Expense"
 											{...field}
 											onKeyDown={handleKeyPress}
+											required={true}
 										/>
 									</FormControl>
 									<FormMessage className="text-red-1" />
@@ -253,6 +252,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
 											placeholder="Category"
 											{...field}
 											onKeyDown={handleKeyPress}
+											required={true}
 										/>
 									</FormControl>
 									<FormMessage className="text-red-1" />
