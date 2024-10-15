@@ -2,14 +2,15 @@ export const dynamic = "force-dynamic";
 
 import Product from "@/lib/models/Product";
 import { connectToDB } from "@/lib/mongoDB";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export const GET = async (request: { params: { productId: string } }) => {
-	const { params } = request;
+export const GET = async (req: NextRequest) => {
+	const { searchParams } = new URL(req.url);
+	const productId = searchParams.get("productId");
 	try {
 		await connectToDB();
 
-		const product = await Product.findById(params.productId);
+		const product = await Product.findById(productId);
 
 		if (!product) {
 			return new NextResponse(
