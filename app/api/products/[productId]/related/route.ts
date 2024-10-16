@@ -1,5 +1,3 @@
-export const dynamic = "force-dynamic";
-
 import Product from "@/lib/models/Product";
 import { connectToDB } from "@/lib/mongoDB";
 import { NextRequest, NextResponse } from "next/server";
@@ -38,7 +36,9 @@ export const GET = async (req: NextRequest) => {
 
 		return NextResponse.json(relatedProducts, { status: 200 });
 	} catch (error) {
-		console.log("[related-products_GET]", error);
+		console.log("[related_GET]", error);
 		return new NextResponse("Internal Server Error", { status: 500 });
 	}
 };
+
+export const dynamic = "force-dynamic";
