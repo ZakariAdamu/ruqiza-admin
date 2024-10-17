@@ -64,7 +64,11 @@ const Delete: React.FC<DeleteProps> = ({ item, id }) => {
 				</AlertDialogHeader>
 				<AlertDialogFooter>
 					<AlertDialogCancel>Cancel</AlertDialogCancel>
-					<AlertDialogAction className="bg-red-1 text-white" onClick={onDelete}>
+					<AlertDialogAction
+						disabled
+						className="bg-red-1 text-white"
+						onClick={onDelete}
+					>
 						Delete
 					</AlertDialogAction>
 				</AlertDialogFooter>
