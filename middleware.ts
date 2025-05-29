@@ -10,26 +10,40 @@
 // 	],
 // };
 
-/* this code will make our authentication routes public. Source: Nextjs.org */
-import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+// middleware.ts
 
+import {
+	clerkMiddleware,
+	createRouteMatcher,
+	type MiddlewareAuthHandler,
+} from "@clerk/nextjs/server";
+
+// Define public (non-protected) routes
 const isPublicRoute = createRouteMatcher([
 	"/api/:path*",
 	"/sign-in(.*)",
 	"/sign-up(.*)",
 ]);
 
-export default clerkMiddleware((auth, request) => {
-	if (!isPublicRoute(request)) {
-		auth().protect();
+export default clerkMiddleware(
+	(auth: MiddlewareAuthHandler, request: Request) => {
+		// Protect route if it's not in the public list
+		// if (!isPublicRoute(request)) {
+		// 	auth().protect();
+		// }
+		// Do not protect any routes for now
+		if (!isPublicRoute(request)) {
+			auth();
+		}
 	}
-});
+);
 
+// Middleware configuration
 export const config = {
 	matcher: [
-		// Skip Next.js internals and all static files, unless found in search params
-		"/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
-		// Always run for API routes
+		// Exclude Next.js internals and static assets
+		"/((?!_next|.*\\.(?:ico|png|jpg|jpeg|svg|css|js|woff2?|ttf|eot|pdf|docx?|xlsx?|zip|webmanifest|txt)).*)",
+		// Always run for API or RPC routes
 		"/(api|trpc)(.*)",
 	],
 };

@@ -1,5 +1,3 @@
-export const dynamic = "force-dynamic";
-
 import SalesChart from "@/components/custom-ui/SalesChart";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -18,7 +16,7 @@ export default async function Home() {
 	const graphData = await getSalesPerMonth();
 	return (
 		<div className="px-8 py-10">
-			<div className="text-heading2-bold">Dashboard</div>
+			<div className="text-heading2-bold">Admin Dashboard</div>
 			<Separator className="bg-grey-1 my-5" />
 
 			<div className="grid grid-cols-2 md:grid-cols-3 gap-10">
