@@ -1,15 +1,7 @@
 "use client";
-<<<<<<< HEAD
-export const dynamic = "force-dynamic";
-
-import Loader from "@/components/custom-ui/Loader";
-import ProductForm from "@/components/products/ProductForm";
-import React, { useEffect, useState } from "react";
-=======
 import Loader from "@/components/custom-ui/Loader";
 import ProductForm from "@/components/products/ProductForm";
 import  { useEffect, useState } from "react";
->>>>>>> 65afa80 (remote authentication momentarily to save testers some testing time)
 
 const ProductDetails = ({ params }: { params: { productId: string } }) => {
 	const [loading, setLoading] = useState(true);
@@ -33,7 +25,7 @@ const ProductDetails = ({ params }: { params: { productId: string } }) => {
 	useEffect(() => {
 		getProductDetails();
 	}, []);
-	return loading ? <Loader /> : <ProductForm initialData={productDetails} />;
+	return loading ? <Loader /> : (productDetails ? <ProductForm initialData={productDetails} /> : null);
 };
 
 export default ProductDetails;
