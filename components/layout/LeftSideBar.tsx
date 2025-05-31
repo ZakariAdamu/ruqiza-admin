@@ -23,7 +23,7 @@ const LeftSideBar = () => {
 						className={`flex gap-4 text-body-medium ${
 							pathName === link.url ? "text-blue-1" : ""
 						}`}
-						// prefetch={true}
+						prefetch={link.prefetch}
 					>
 						{link.icon}
 						<p>{link.label}</p>
