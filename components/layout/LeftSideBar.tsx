@@ -11,7 +11,9 @@ const LeftSideBar = () => {
 	const pathName = usePathname();
 	return (
 		<div className="h-screen left-0 top-0 sticky p-10 flex flex-col gap-16 bg-[#d9d9d9] shadow-xl max-lg:hidden">
-			<Image src="/logo.png" alt="logo" width={150} height={150} />
+			<Link href="/" className="">
+				<Image src="/logo.png" alt="logo" width={150} height={150} />
+			</Link>
 
 			<div className="flex flex-col gap-12">
 				{navLinks.map((link) => (
@@ -21,6 +23,7 @@ const LeftSideBar = () => {
 						className={`flex gap-4 text-body-medium ${
 							pathName === link.url ? "text-blue-1" : ""
 						}`}
+						// prefetch={true}
 					>
 						{link.icon}
 						<p>{link.label}</p>
